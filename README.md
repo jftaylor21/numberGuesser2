@@ -1,4 +1,4 @@
 numberGuesser2
 ==============
 
-Simple Game to guess number
+Simple game where player tries to guess the number
