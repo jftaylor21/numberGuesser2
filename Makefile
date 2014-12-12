@@ -1,5 +1,5 @@
 ifeq ($(OS),Windows_NT)
-  $(error Unsupported platform)
+  include windows.mk
 else
   UNAME_S := $(shell uname -s)
   ifeq ($(UNAME_S),Linux)
@@ -20,7 +20,7 @@ numberGuesser2$(BINEXTENSION): $(OBJS) $(BINDIR)
 	$(CC) $(OBJS) -o $(BINDIR)/numberGuesser2
 
 clean:
-	$(RM) $(BUILDDIR) $(BINDIR)
+	$(RMDIR) $(BUILDDIR) $(BINDIR)
 
 build/%.o: src/%.cpp $(BUILDDIR)
 	$(CC) $(CXX_FLAGS) -c $< -o $@

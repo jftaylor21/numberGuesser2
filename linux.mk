@@ -1,7 +1,7 @@
-# This where Linux specific variables are set
+# This is where Linux specific build variables are set
 
 CC=g++
-RM=rm -rf
-MKDIR=mkdir -p
+RMDIR=rm -rf
+MKDIR=mkdir
 BINEXTENSION=
 
