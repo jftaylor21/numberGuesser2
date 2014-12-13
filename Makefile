@@ -1,13 +1,4 @@
-ifeq ($(OS),Windows_NT)
-  include windows.mk
-else
-  UNAME_S := $(shell uname -s)
-  ifeq ($(UNAME_S),Linux)
-    include linux.mk
-  else
-    $(error Unsupported platform)
-  endif
-endif
+include makerules/os.mk
 
 SRCDIR=src
 BUILDDIR=build
