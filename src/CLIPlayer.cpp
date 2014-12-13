@@ -59,6 +59,7 @@ InputData CLIPlayer::getInput(InputData::NeedInputType type) const
     break;
    case InputData::NEED_GUESS:
     std::cout << "please guess a number...";
+    break;
   }
 
   InputData::Guess g;
