@@ -38,12 +38,8 @@ bool Game::nextTurn()
     mCurrentPlayerID = nextPlayer;
     mGameData.currentPlayer = mPlayers[mCurrentPlayerID]->name();
 
-    // send updates to everyone
-    PlayerMap::iterator it2(mPlayers.begin());
-    for(; it2 != mPlayers.end(); ++it2)
-    {
-      it2->second->update(mGameData);
-    }
+    // tell everyone current state of game
+    sendUpdatesToEveryone();
 
     // get input from current player
     InputData input(mPlayers[mCurrentPlayerID]->getInput(InputData::NEED_GUESS));
@@ -62,6 +58,9 @@ bool Game::nextTurn()
     else
     {
       mGameData.lastGuess = GameData::LAST_GUESS_CORRECT;
+
+      // let everyone know who won
+      sendUpdatesToEveryone();
     }
     mGameData.guesses.push_back(input.guess);
   }
@@ -103,5 +102,14 @@ GameData::PlayerID Game::getNextPlayer(GameData::PlayerID currentPlayer) const
     ret = it->first;
   }
   return ret;
+}
+
+void Game::sendUpdatesToEveryone()
+{
+  PlayerMap::iterator it(mPlayers.begin());
+  for(; it != mPlayers.end(); ++it)
+  {
+    it->second->update(mGameData);
+  }
 }
 

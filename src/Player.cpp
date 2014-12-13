@@ -51,13 +51,14 @@ void Player::update(const GameData& data)
 
 InputData Player::getInput(InputData::NeedInputType type) const
 {
+  std::cout << mName << ", ";
   switch(type)
   {
    case InputData::NEED_NEW_SECRET_NUMBER:
-    std::cout << "Please enter a secret number for other players to guess...";
+    std::cout << "please enter a secret number for other players to guess...";
     break;
    case InputData::NEED_GUESS:
-    std::cout << "Please guess a number...";
+    std::cout << "please guess a number...";
   }
 
   InputData::Guess g;

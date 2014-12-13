@@ -26,6 +26,7 @@ class Game
 
   PlayerMap::const_iterator incrementIterator(PlayerMap::const_iterator it) const;
   GameData::PlayerID getNextPlayer(GameData::PlayerID currentPlayer) const;
+  void sendUpdatesToEveryone();
 
   PlayerMap mPlayers;
   GameData::PlayerID mNextID;
