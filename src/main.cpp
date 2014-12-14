@@ -1,5 +1,5 @@
 #include "engine/Game.hpp"
-#include "numberGuesser2/AIPlayer.hpp"
+#include "engine/AIPlayer.hpp"
 #include "numberGuesser2/CLIPlayer.hpp"
 
 #include <iostream>
