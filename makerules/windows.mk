@@ -3,4 +3,7 @@
 CC=g++
 RMDIR=rmdir /s /q
 MKDIR=mkdir
+CP=copy
 BINEXTENSION=.exe
+SOEXTENSION=.dll
+

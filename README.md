@@ -15,7 +15,7 @@ Install the following two programs with your distribution's package manager:
 > Follow these instructions for more details: http://www.mingw.org/wiki/howto_install_the_mingw_gcc_compiler_suite
 ## Instructions
 1. cd into the numberGuesser2 directory that you have downloaded or cloned on your machine
-2. Edit linux.mk or windows.mk and change build settings if necessary
+2. Edit makerules/linux.mk or makerules/windows.mk and change build settings if necessary
 3. Run "make" and the game will be built!
 > Note that mingw may be "mingw32-make" instead of just make.
 

@@ -1,4 +1,4 @@
-#include "numberGuesser2/Game.hpp"
+#include "engine/Game.hpp"
 #include "numberGuesser2/AIPlayer.hpp"
 #include "numberGuesser2/CLIPlayer.hpp"
 

@@ -1,20 +1,16 @@
-MAKERULESDIR=makerules
+MAKERULESDIR=../makerules
 include $(MAKERULESDIR)/os.mk
-
-ENGINEDIR=engine
-include $(ENGINEDIR)/engine.mk
 
 BUILDDIR=build
 BINDIR=bin
-CXX_FLAGS=-Wall -Wextra -Werror -MMD -Iinclude $(ENGINE_INCLUDES) -std=c++11
+CXX_FLAGS=-Wall -Wextra -Werror -MMD -Iinclude -std=c++11 -fPIC
 
 SRCDIR=src
 SOURCES:=$(wildcard src/*.cpp)
 OBJS:=$(addprefix $(BUILDDIR)/,$(notdir $(SOURCES:.cpp=.o)))
 
-$(BINDIR)/numberGuesser2$(BINEXTENSION): $(OBJS) | $(BINDIR)
-	$(CC) $(OBJS) $(ENGINE_LIBS) -o $@ -Wl,-rpath,.
-	$(CP) $(ENGINE_BINDIR)/* $(BINDIR)
+$(BINDIR)/libengine$(SOEXTENSION): $(OBJS) | $(BINDIR)
+	$(CC) $(OBJS) -shared -o $@
 
 clean:
 	$(RMDIR) $(BUILDDIR) $(BINDIR)

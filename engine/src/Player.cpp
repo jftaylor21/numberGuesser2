@@ -1,4 +1,4 @@
-#include "numberGuesser2/Player.hpp"
+#include "engine/Player.hpp"
 
 Player::Player(const std::string& name)
   : mName(name)

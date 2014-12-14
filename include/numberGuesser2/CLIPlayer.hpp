@@ -1,7 +1,7 @@
 #ifndef CLIPLAYER_HPP
 #define CLIPLAYER_HPP
 
-#include "Player.hpp"
+#include "engine/Player.hpp"
 
 class CLIPlayer : public Player
 {

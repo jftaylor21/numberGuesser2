@@ -1,7 +1,7 @@
 #ifndef AIPLAYER_HPP
 #define AIPLAYER_HPP
 
-#include "Player.hpp"
+#include "engine/Player.hpp"
 
 class AIPlayer : public Player
 {

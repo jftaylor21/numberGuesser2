@@ -3,5 +3,7 @@
 CC=g++
 RMDIR=rm -rf
 MKDIR=mkdir
+CP=cp
 BINEXTENSION=
+SOEXTENSION=.so
 
