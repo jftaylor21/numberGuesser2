@@ -1,26 +1,48 @@
 MAKERULESDIR=makerules
 include $(MAKERULESDIR)/os.mk
 
-ENGINEDIR=engine
-include $(ENGINEDIR)/engine.mk
-
 BUILDDIR=build
 BINDIR=bin
-CXX_FLAGS=-Wall -Wextra -Werror -MMD -Iinclude $(ENGINE_INCLUDES) -std=c++11
+CXX_FLAGS=-Wall -Wextra -Werror -MMD -std=c++11 -fPIC
 
-SRCDIR=src
-SOURCES:=$(wildcard src/*.cpp)
-OBJS:=$(addprefix $(BUILDDIR)/,$(notdir $(SOURCES:.cpp=.o)))
+CLI_SRCDIR=src
+CLI_SOURCES:=$(wildcard $(CLI_SRCDIR)/*.cpp)
+CLI_OBJS:=$(addprefix $(BUILDDIR)/,$(notdir $(CLI_SOURCES:.cpp=.o)))
+CLI_INCLUDES=include
 
-$(BINDIR)/numberGuesser2$(BINEXTENSION): $(OBJS) | $(BINDIR)
-	$(CC) $(OBJS) $(ENGINE_LIBS) -o $@ -Wl,-rpath,.
-	$(CP) $(ENGINE_BINDIR)/* $(BINDIR)
+ENGINE_SRCDIR=engine/src
+ENGINE_SOURCES:=$(wildcard $(ENGINE_SRCDIR)/*.cpp)
+ENGINE_OBJS:=$(addprefix $(BUILDDIR)/engine/,$(notdir $(ENGINE_SOURCES:.cpp=.o)))
+ENGINE_INCLUDES=engine/include
+ENGINE_TARGET=$(BINDIR)/libengine$(SOEXTENSION)
+
+# exeutable rules
+
+$(BINDIR)/numberGuesser2$(BINEXTENSION): $(CLI_OBJS) $(ENGINE_TARGET) | $(BINDIR)
+	$(CC) $(CLI_OBJS) -Lbin -lengine -o $@ -Wl,-rpath,.
+
+# so rules
+
+$(ENGINE_TARGET): $(ENGINE_OBJS) | $(BINDIR)
+	$(CC) $(ENGINE_OBJS) -shared -o $@
+
+# clean rules
 
 clean:
 	$(RMDIR) $(BUILDDIR) $(BINDIR)
 
-$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp | $(BUILDDIR)
-	$(CC) $(CXX_FLAGS) -c $< -o $@
+# cpp rules
+
+$(BUILDDIR)/engine/%.o: $(ENGINE_SRCDIR)/%.cpp | $(BUILDDIR)/engine
+	$(CC) $(CXX_FLAGS) -I$(ENGINE_INCLUDES) -c $< -o $@
+
+$(BUILDDIR)/%.o: $(CLI_SRCDIR)/%.cpp | $(BUILDDIR)
+	$(CC) $(CXX_FLAGS) -I$(ENGINE_INCLUDES) -I$(CLI_INCLUDES) -c $< -o $@
+
+# mkdir rules
+
+$(BUILDDIR)/engine: | $(BUILDDIR)
+	$(MKDIR) $(BUILDDIR)/engine
 
 $(BUILDDIR):
 	$(MKDIR) $(BUILDDIR)
@@ -28,4 +50,7 @@ $(BUILDDIR):
 $(BINDIR):
 	$(MKDIR) $(BINDIR)
 
--include $(OBJS:.o=.d)
+# generate dependency files
+-include $(CLI_OBJS:.o=.d)
+-include $(ENGINE_OBJS:.o=.d)
+
