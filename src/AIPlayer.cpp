@@ -1,7 +1,20 @@
 #include "numberGuesser2/AIPlayer.hpp"
 
+#include <cstdlib>
+#include <sstream>
+#include <string>
+
 namespace
 {
+  // workaround for mingw not supporting std::to_string
+  // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=52015
+  std::string to_string(size_t number)
+  {
+    std::ostringstream ss;
+    ss << number;
+    return ss.str();
+  }
+  
   InputData::Guess getRandomGuess()
   {
     InputData::Guess ret(rand());
@@ -14,7 +27,7 @@ namespace
 }
 
 AIPlayer::AIPlayer()
-  : Player(sBasename+std::to_string(sNumber))
+  : Player(sBasename+to_string(sNumber))
 {
   ++sNumber;
 }
