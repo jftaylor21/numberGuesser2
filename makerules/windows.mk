@@ -6,4 +6,4 @@ MKDIR=mkdir
 CP=copy
 BINEXTENSION=.exe
 SOEXTENSION=.dll
-
+FPIC=

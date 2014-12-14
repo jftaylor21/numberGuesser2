@@ -3,7 +3,7 @@ include $(MAKERULESDIR)/os.mk
 
 BUILDDIR=build
 BINDIR=bin
-CXX_FLAGS=-Wall -Wextra -Werror -MMD -std=c++11 -fPIC
+CXX_FLAGS=-Wall -Wextra -Werror -MMD -std=c++11 $(FPIC)
 
 CLI_SRCDIR=src
 CLI_SOURCES:=$(wildcard $(CLI_SRCDIR)/*.cpp)
