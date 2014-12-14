@@ -33,7 +33,7 @@ clean:
 
 # cpp rules
 
-$(BUILDDIR)/engine/%.o: $(ENGINE_SRCDIR)/%.cpp | $(BUILDDIR)/engine
+$(BUILDDIR)/engine/%.o: $(ENGINE_SRCDIR)/%.cpp | $(BUILDDIR)$(DIRSEP)engine
 	$(CC) $(CXX_FLAGS) -I$(ENGINE_INCLUDES) -c $< -o $@
 
 $(BUILDDIR)/%.o: $(CLI_SRCDIR)/%.cpp | $(BUILDDIR)
@@ -41,8 +41,8 @@ $(BUILDDIR)/%.o: $(CLI_SRCDIR)/%.cpp | $(BUILDDIR)
 
 # mkdir rules
 
-$(BUILDDIR)/engine: | $(BUILDDIR)
-	$(MKDIR) $(BUILDDIR)/engine
+$(BUILDDIR)$(DIRSEP)engine: | $(BUILDDIR)
+	$(MKDIR) $(BUILDDIR)$(DIRSEP)engine
 
 $(BUILDDIR):
 	$(MKDIR) $(BUILDDIR)
