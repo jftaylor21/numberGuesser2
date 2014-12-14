@@ -7,25 +7,28 @@
 #include <cstring>
 #include <string>
 
-struct GameData
+namespace engine
 {
-  typedef size_t PlayerID;
-  typedef std::list<InputData::Guess> GuessList;
-
-  enum LastGuessType
+  struct GameData
   {
-    LAST_GUESS_HIGH,
-    LAST_GUESS_LOW,
-    LAST_GUESS_CORRECT,
-    LAST_GUESS_INVALID
+    typedef size_t PlayerID;
+    typedef std::list<InputData::Guess> GuessList;
+  
+    enum LastGuessType
+    {
+      LAST_GUESS_HIGH,
+      LAST_GUESS_LOW,
+      LAST_GUESS_CORRECT,
+      LAST_GUESS_INVALID
+    };
+  
+    GameData() : lastGuess(LAST_GUESS_INVALID) {}
+  
+    std::string currentPlayer;
+    GuessList guesses;
+    LastGuessType lastGuess;
   };
-
-  GameData() : lastGuess(LAST_GUESS_INVALID) {}
-
-  std::string currentPlayer;
-  GuessList guesses;
-  LastGuessType lastGuess;
-};
+}
 
 #endif
 

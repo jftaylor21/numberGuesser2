@@ -3,14 +3,17 @@
 
 #include "engine/Player.hpp"
 
-class CLIPlayer : public Player
+namespace cli
 {
- public:
-  CLIPlayer(const std::string& name);
-
-  virtual void update(const GameData& data) override;
-  virtual InputData getInput(InputData::NeedInputType type) const override;
-};
+  class CLIPlayer : public engine::Player
+  {
+   public:
+    CLIPlayer(const std::string& name);
+  
+    virtual void update(const engine::GameData& data) override;
+    virtual engine::InputData getInput(engine::InputData::NeedInputType type) const override;
+  };
+}
 
 #endif
 

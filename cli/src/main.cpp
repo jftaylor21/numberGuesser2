@@ -6,7 +6,7 @@
 
 int main()
 {
-  Game g;
+  engine::Game g;
 
   std::cout << "Please enter the name of the player who will think of a secret number or \"ai\" for a computer player..." << std::endl;
   std::string name;
@@ -14,16 +14,16 @@ int main()
   {
     std::getline(std::cin, name);
   }
-  Game::PlayerP p1(nullptr);
+  engine::Game::PlayerP p1(nullptr);
   if ("ai" == name)
   {
-    p1 = Game::PlayerP(new AIPlayer());
+    p1 = engine::Game::PlayerP(new engine::AIPlayer());
   }
   else
   {
-    p1 = Game::PlayerP(new CLIPlayer(name));
+    p1 = engine::Game::PlayerP(new cli::CLIPlayer(name));
   }
-  GameData::PlayerID p1id(g.attach(p1));
+  engine::GameData::PlayerID p1id(g.attach(p1));
 
   name = "";
   std::cout << "Please enter the first player name who will try to guess the number or \"ai\" for a computer player..." << std::endl;
@@ -35,11 +35,11 @@ int main()
   {
     if ("ai" == name)
     {
-      g.attach(Game::PlayerP(new AIPlayer()));
+      g.attach(engine::Game::PlayerP(new engine::AIPlayer()));
     }
     else
     {
-      g.attach(Game::PlayerP(new CLIPlayer(name)));
+      g.attach(engine::Game::PlayerP(new cli::CLIPlayer(name)));
     }
     std::cout << "Please enter the next player name, \"ai\" for a computer player, or empty string if complete..." << std::endl;
     std::getline(std::cin, name);

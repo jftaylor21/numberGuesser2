@@ -15,9 +15,9 @@ namespace
     return ss.str();
   }
   
-  InputData::Guess getRandomGuess()
+  engine::InputData::Guess getRandomGuess()
   {
-    InputData::Guess ret(rand());
+    engine::InputData::Guess ret(rand());
     bool positive(rand()%2);
     return positive ? ret : -ret;
   }
@@ -26,30 +26,33 @@ namespace
   size_t sNumber(0);
 }
 
-AIPlayer::AIPlayer()
-  : Player(sBasename+to_string(sNumber))
+namespace engine
 {
-  ++sNumber;
-}
-
-void AIPlayer::update(const GameData&)
-{
-}
-
-InputData AIPlayer::getInput(InputData::NeedInputType type) const
-{
-  InputData::Guess g;
-  switch(type)
+  AIPlayer::AIPlayer()
+    : Player(sBasename+to_string(sNumber))
   {
-   case InputData::NEED_NEW_SECRET_NUMBER:
-    g = getRandomGuess();
-    break;
-   case InputData::NEED_GUESS:
-    g = getRandomGuess();
-    break;
+    ++sNumber;
   }
-
-  InputData ret(g);
-  return ret;
+  
+  void AIPlayer::update(const GameData&)
+  {
+  }
+  
+  InputData AIPlayer::getInput(InputData::NeedInputType type) const
+  {
+    InputData::Guess g;
+    switch(type)
+    {
+     case InputData::NEED_NEW_SECRET_NUMBER:
+      g = getRandomGuess();
+      break;
+     case InputData::NEED_GUESS:
+      g = getRandomGuess();
+      break;
+    }
+  
+    InputData ret(g);
+    return ret;
+  }
 }
 

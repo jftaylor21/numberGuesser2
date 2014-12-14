@@ -3,20 +3,23 @@
 
 #include <list>
 
-struct InputData
+namespace engine
 {
-  typedef int Guess;
-
-  enum NeedInputType
+  struct InputData
   {
-    NEED_NEW_SECRET_NUMBER,
-    NEED_GUESS
+    typedef int Guess;
+  
+    enum NeedInputType
+    {
+      NEED_NEW_SECRET_NUMBER,
+      NEED_GUESS
+    };
+  
+    InputData(Guess g) : guess(g) {}
+  
+    Guess guess;
   };
-
-  InputData(Guess g) : guess(g) {}
-
-  Guess guess;
-};
+}
 
 #endif
 

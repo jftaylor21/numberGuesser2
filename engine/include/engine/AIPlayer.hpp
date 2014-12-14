@@ -3,14 +3,17 @@
 
 #include "engine/Player.hpp"
 
-class AIPlayer : public Player
+namespace engine
 {
- public:
-  AIPlayer();
-
-  virtual void update(const GameData& data) override;
-  virtual InputData getInput(InputData::NeedInputType type) const override;
-};
+  class AIPlayer : public Player
+  {
+   public:
+    AIPlayer();
+  
+    virtual void update(const GameData& data) override;
+    virtual InputData getInput(InputData::NeedInputType type) const override;
+  };
+}
 
 #endif
 

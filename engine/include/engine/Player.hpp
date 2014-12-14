@@ -6,19 +6,22 @@
 
 #include <string>
 
-class Player
+namespace engine
 {
- public:
-  Player(const std::string& name);
-
-  virtual void update(const GameData& data) = 0;
-  virtual InputData getInput(InputData::NeedInputType type) const = 0;
-
-  const std::string& name() const;
-
- private:
-  std::string mName;
-};
+  class Player
+  {
+   public:
+    Player(const std::string& name);
+  
+    virtual void update(const GameData& data) = 0;
+    virtual InputData getInput(InputData::NeedInputType type) const = 0;
+  
+    const std::string& name() const;
+  
+   private:
+    std::string mName;
+  };
+}
 
 #endif
 

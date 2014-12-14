@@ -1,12 +1,15 @@
 #include "engine/Player.hpp"
 
-Player::Player(const std::string& name)
-  : mName(name)
+namespace engine
 {
-}
-
-const std::string& Player::name() const
-{
-  return mName;
+  Player::Player(const std::string& name)
+    : mName(name)
+  {
+  }
+  
+  const std::string& Player::name() const
+  {
+    return mName;
+  }
 }
 
