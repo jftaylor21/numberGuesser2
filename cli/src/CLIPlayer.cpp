@@ -1,4 +1,4 @@
-#include "numberGuesser2/CLIPlayer.hpp"
+#include "cli/CLIPlayer.hpp"
 
 #include <iostream>
 

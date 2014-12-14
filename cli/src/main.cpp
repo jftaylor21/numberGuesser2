@@ -1,6 +1,6 @@
 #include "engine/Game.hpp"
 #include "engine/AIPlayer.hpp"
-#include "numberGuesser2/CLIPlayer.hpp"
+#include "cli/CLIPlayer.hpp"
 
 #include <iostream>
 

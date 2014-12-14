@@ -5,10 +5,11 @@ BUILDDIR=build
 BINDIR=bin
 CXX_FLAGS=-Wall -Wextra -Werror -MMD -std=c++11 $(FPIC)
 
-CLI_SRCDIR=src
+CLI_SRCDIR=cli/src
 CLI_SOURCES:=$(wildcard $(CLI_SRCDIR)/*.cpp)
 CLI_OBJS:=$(addprefix $(BUILDDIR)/,$(notdir $(CLI_SOURCES:.cpp=.o)))
-CLI_INCLUDES=include
+CLI_INCLUDES=cli/include
+CLI_TARGET=$(BINDIR)/numberGuesser2-cli$(BINEXTENSION)
 
 ENGINE_SRCDIR=engine/src
 ENGINE_SOURCES:=$(wildcard $(ENGINE_SRCDIR)/*.cpp)
@@ -18,7 +19,7 @@ ENGINE_TARGET=$(BINDIR)/libengine$(SOEXTENSION)
 
 # exeutable rules
 
-$(BINDIR)/numberGuesser2$(BINEXTENSION): $(CLI_OBJS) $(ENGINE_TARGET) | $(BINDIR)
+$(CLI_TARGET): $(CLI_OBJS) $(ENGINE_TARGET) | $(BINDIR)
 	$(CC) $(CLI_OBJS) -Lbin -lengine -o $@ -Wl,-rpath,.
 
 # so rules
